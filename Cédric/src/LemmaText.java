@@ -1,5 +1,6 @@
 //THIS IS A TEST WITH COMMIT AND PUSH GIT
 //this is another test
+//https://github.com/collab-uniba/socialcde4eclipse/wiki/How-to-import-a-GitHub-project-into-Eclipse
 
 import java.util.ArrayList;
 import java.util.Arrays;
