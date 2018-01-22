@@ -1,0 +1,1 @@
+replace all ' n in lemmatized files before doing anything such as sentiment analysis.

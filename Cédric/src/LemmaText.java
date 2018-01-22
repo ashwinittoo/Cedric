@@ -1,3 +1,6 @@
+//VERSION 22/1
+//TESTONE
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -21,6 +24,7 @@ import edu.stanford.nlp.ling.CoreAnnotations.NamedEntityTagAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+
 import edu.stanford.nlp.util.CoreMap;
 
 public class LemmaText {
@@ -43,23 +47,6 @@ public class LemmaText {
 		
 	}
 	
-	
-	/*public void setDateFormat() {
-		  DateFormatSymbols dfs = new DateFormatSymbols(Locale.US);
-	        
-		  
-	        String[] months = dfs.getMonths();
-	        
-	        this.monthList = new ArrayList<>(Arrays.asList(months));
-	        
-	        for(String m:monthList) {
-	        	System.out.println(m);
-	        }
-	        
-	       
-	}*/
-		
-	
 	 public List<String> lemmatize(String documentText)
 	    {
 	        List<String> lemmas = new LinkedList<String>();
@@ -77,7 +64,15 @@ public class LemmaText {
 	            	
 	            	//NER can become useful later: we can replace all occurences of PERSON, DATE, ORGANIZATION with NER Class
 	            	//System.out.println("TESTING NER:"+token+" NER:"+token.get(NamedEntityTagAnnotation.class));
-	                lemmas.add(token.get(LemmaAnnotation.class));
+	                String lemTxt = token.get(LemmaAnnotation.class);
+	            	
+	            	/*System.out.println("LEMMA:" + lemTxt); 
+	                if(lemTxt.trim().equals(("' t"))){ ////EASIER NOT TO DO ANYTHING HERE. AS "'"  and "T" ARE 2 SEPARATE LEMMAS
+	            		System.out.println(token+" FOUND TOK::"+ lemTxt );
+	            		lemTxt =" not ";
+	            	}*/
+	                
+	            	lemmas.add(lemTxt);
 	            }
 	        }
 	        return lemmas;
@@ -85,7 +80,7 @@ public class LemmaText {
 	 
 	 public void lemmatizeDir(File folder, File outDirFile) {
 		 
-		 int countLimit = 1;
+		 int countLimit = 5000;
 		 int fileCount=0;
 		 for (final File fileEntry : folder.listFiles()) {
 		        if (fileEntry.isDirectory()) {
@@ -109,7 +104,12 @@ public class LemmaText {
 		            	
 		            	BufferedReader br= new BufferedReader(new FileReader(new File(folder.getPath()+"\\"+fileEntry.getName())));
 		            	
-           		            	
+           		        String outputPath=outDirFile.getPath()+"\\"+ fileEntry.getName();
+           		        
+		            	BufferedWriter brWrt = new BufferedWriter(new FileWriter(new File(outputPath)));
+		            	
+		            	System.out.println("***OUTPUTTING TO:"+outputPath);
+		            	
 		            	String lnRead = br.readLine();
 		            	lnRead = lnRead.trim();
 		            	
@@ -133,8 +133,13 @@ public class LemmaText {
 		            			
 		            			String textTag = getTag(lnCnt);
 		            					            			
-		            			outLemmStr.append(textTag+String.join(" ", this.lemmatize(lnRead))+"\n");
-		            			//System.out.println("LEMMA:"+ lemmString);
+		            			
+		            			brWrt.write(textTag+String.join(" ", this.lemmatize(lnRead))+"\n");
+		            			brWrt.flush();
+		            			
+		            			System.out.println("Writing:"+textTag+String.join(" ", this.lemmatize(lnRead))+"\n");
+		            					            			
+		            			
 		            		}
 		            		
 		            		
@@ -142,29 +147,16 @@ public class LemmaText {
 		            		
 		            	} //end whileBufferedReader
 		            	
-		            	System.out.println("FIN BUFF: " + outLemmStr );
 		            	
+		            	//System.out.println("FIN BUFF: " + outLemmStr );
+		            	
+		            	//writeToFile(outLemmStr, outDirFile, fileEntry.getName()); //dump the lemmatized content to file
 		            	
 		            	fileCount++;
 		            	if(fileCount > countLimit) {
 		            		break;
 		            	}
 		            	
-		            	
-		            	/*
-		            	contentFiles =  (ArrayList<String>) contentStream.map(String::trim).collect(Collectors.toList());
-		            	System.out.println("Size is:"+contentFiles.size());
-		            	for(String w:contentFiles) {
-		            		System.out.println("word is:"+w);
-		            	}
-		            	*/
-		            	
-		            	
-		            	/*		            	
-		            	String temp = contentStream.collect(Collectors.joining());
-		            	System.out.println("ORIGINAL:" + temp);
-		            	System.out.println("LEMME:"+this.lemmatize(temp));
-		            	*/
 		            	
 		            	
 		            } //try
@@ -177,7 +169,9 @@ public class LemmaText {
 		    }
 	 }
 	 
+	 	 
 	 private String getTag(int lnCnt) {
+		 //returns a tag added to each line (e.g. author, date) as meta-data
 		 String tag ="";
 		 
 		 if(lnCnt == 1) {
