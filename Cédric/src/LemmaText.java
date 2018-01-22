@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 //VERSION 22/1
 //TESTONE
 //NEW ONE
+=======
+//THIS IS A TEST WITH COMMIT AND PUSH GIT
+//this is another test
+//https://github.com/collab-uniba/socialcde4eclipse/wiki/How-to-import-a-GitHub-project-into-Eclipse
+>>>>>>> branch 'master' of https://github.com/ashwinittoo/Cedric.git
 
 import java.util.ArrayList;
 import java.util.Arrays;
