@@ -1,12 +1,12 @@
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //VERSION 22/1
 //TESTONE
 //NEW ONE
-=======
+//=======
 //THIS IS A TEST WITH COMMIT AND PUSH GIT
 //this is another test
 //https://github.com/collab-uniba/socialcde4eclipse/wiki/How-to-import-a-GitHub-project-into-Eclipse
->>>>>>> branch 'master' of https://github.com/ashwinittoo/Cedric.git
+//>>>>>>> branch 'master' of https://github.com/ashwinittoo/Cedric.git
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -231,10 +231,12 @@ public class LemmaText {
 	        //NEED TO CREATE A FOLDER WITH THE TEXT FILE AND PASS IT TO THE METHOD TO LEMMATIZE HERE.
 	        //String dirName = "C:\\Users\\Ashwin\\TestCode\\txtfile";
 	        
-	        String dirName = "C:\\Users\\Ashwin\\Dropbox\\Cédric\\Working paper Bibliography - Cedric\\5000 texts sample\\Sample 2012-2016";
+	        //String dirName = "C:\\Users\\Ashwin\\Dropbox\\Cédric\\Working paper Bibliography - Cedric\\5000 texts sample\\Sample 2012-2016";
 	        
-	        String outDirName = "C:\\Users\\Ashwin\\Documents\\Research\\Cédric\\LemmatizedFiles";
+	        String dirName = "C:\\Users\\ULG\\Dropbox\\Cédric\\Working paper Bibliography - Cedric\\5000 texts sample\\Sample 2012-2016";
 	        
+	        //String outDirName = "C:\\Users\\Ashwin\\Documents\\Research\\Cédric\\LemmatizedFiles";
+	        String outDirName ="D:\\HEC\\Research\\PhD\\Gillain\\Lemmatized";
 	      //https://stackoverflow.com/questions/1844688/how-to-read-all-files-in-a-folder-from-java
 	        
 	        try {
