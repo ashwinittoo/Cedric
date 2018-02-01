@@ -1,1 +1,12 @@
 replace all ' n in lemmatized files before doing anything such as sentiment analysis.
+
+1/2/2018
+- DictStyleDet..detect lex entries (currently only growth) in 5000 lemmatized files
+- results in checklex in dropbox --> results
+- to compare with Reco (manually annotated by Cedric) and LM_GI xls (Algo of Cedric)
+-- ReadReco.java reads the Reco file and splits to get the reco label and dumps sentences for a given reco style in a temp outfile file
+-- use this output file to compare with CheckLex
+--> all the growth reco annotated by Cedric detected by DictStyle (checklex)
+
+- to also check our lexmatch in checklest: are all the detected sentence really about growth? use grep/tail etc
+-- see GrowLexMatchOnly
